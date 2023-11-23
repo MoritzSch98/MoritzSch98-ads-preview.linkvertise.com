@@ -1,0 +1,26 @@
+on: 
+  push:
+    branches:
+      - master
+name: 🚀 Deploy Website On Push
+jobs:
+  deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+    
+    - name: 📂 Sync files using SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{secrets.HOST}}
+        username: ${{secrets.SSH_USER}}
+        key: ${{secrets.SSH_PRIVATE_KEY}}
+        port: ${{secrets.PORT}}
+        script: |
+          cd /var/www/ads-preview.linkvertise.com/public_html
+          git pull origin main
+          git status
+
+        
