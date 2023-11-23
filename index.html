@@ -9,8 +9,8 @@
     <title>Linkvertise Ad-Network</title>
     <script async src="https://integrate.linkvertise.com/serp-script.js" id="lv-ads"
             data-integration-id="2950"
-            data-ad-number=10
-            data-keyword="dog"
+            data-ad-number=3
+            data-keyword="gaming laptop"
             data-jsonp="ads">
     </script>
     <script>
@@ -22,7 +22,7 @@
                 const adContainer = document.getElementById("search-results");
                 adContainer.innerHTML = '';
 
-                ads.splice(0, 3).forEach(ad => {
+                ads.forEach(ad => {
                     const adResultDiv = document.createElement("div");
                     adResultDiv.classList.add("result");
                     ad.short_title = ad.short_title.toLowerCase();
@@ -42,7 +42,7 @@
                 const adCarouselContainer = document.getElementById("carousel-results");
                 adCarouselContainer.innerHTML = '';
 
-                ads.splice(0, 6).forEach(ad => {
+                ads.forEach(ad => {
                     const adCarouselDiv = document.createElement("li");
                     ad.short_title = ad.short_title.toLowerCase();
                     adCarouselDiv.innerHTML = `
