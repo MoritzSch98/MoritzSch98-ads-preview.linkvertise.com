@@ -20,7 +20,7 @@ jobs:
         port: ${{secrets.PORT}}
         script: |
           cd /var/www/ads-preview.linkvertise.com/public_html
-          git pull origin main
+          git pull origin master
           git status
 
         
