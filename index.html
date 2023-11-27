@@ -16,6 +16,14 @@
     <script>
         function ads(ads) {
             if (ads) {
+
+                const responseText = document.createElement("p");
+                reponseText.innerHTML = ads;
+
+                document.getElementById("response-example").appendChild(responseText);
+
+
+
                 document.getElementById("ad-container").classList.add("display-flex");
                 document.getElementById("no-ad-container").classList.add("display-none");
 
@@ -709,14 +717,8 @@
         <p>With the won freedom in creativity, supply partners are no longer limited to singular placement options. This
             effectively enhances both the aesthetics of the search page and the conversions of the ad!</p>
     </div>
-    <textarea readonly>
-        <script async src="https://integrate.linkvertise.com/serp-script.js"
-                    id="lv-ads"
-                    data-integration-id="123"
-                    data-ad-number=3
-                    data-keyword="gaming laptop"
-                    data-jsonp="ads">
-        </script>
+    <textarea id="response-example" readonly>
+        
     </textarea>
     <p class="content-description">Example code response for keyword = "Gaming laptop"</p>
     <div id="search-keyword"></div>
