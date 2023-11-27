@@ -9,14 +9,14 @@
     <title>Linkvertise Ad-Network</title>
     <script async src="https://integrate.linkvertise.com/serp-script.js" id="lv-ads"
             data-integration-id="2950"
-            data-ad-number=3
+            data-ad-number=4
             data-keyword="gaming laptop"
             data-jsonp="ads">
     </script>
     <script>
         function ads(ads) {
             if (ads) {
-                document.getElementById("ad-container").classList.add("display-block");
+                document.getElementById("ad-container").classList.add("display-flex");
                 document.getElementById("no-ad-container").classList.add("display-none");
 
                 const adContainer = document.getElementById("search-results");
@@ -25,7 +25,6 @@
                 ads.forEach(ad => {
                     const adResultDiv = document.createElement("div");
                     adResultDiv.classList.add("result");
-                    ad.short_title = ad.short_title.toLowerCase();
                     adResultDiv.innerHTML = `
                             <h2 class="result-title">
                                 <div class="ad-label">Ad</div>
@@ -44,7 +43,6 @@
 
                 ads.forEach(ad => {
                     const adCarouselDiv = document.createElement("li");
-                    ad.short_title = ad.short_title.toLowerCase();
                     adCarouselDiv.innerHTML = `
                     <div class="result carousel-result">
                         <a class="carousel-ad-link" href="${ad.clickout_url}" target="_blank">
@@ -67,37 +65,42 @@
                 const adsContainer = document.getElementById("download-ad");
                 adsContainer.innerHTML = '';
 
-                const adDiv = document.createElement("div");
-                adDiv.classList.add("download-ad-wrapper");
-                adDiv.innerHTML = `
-                    <div class="download-ad">
-                        <div class="download-result">
-                            <div class="download-thumbnail">
-                             <img class="ad-img" src="${ads[0].thumbnail_url}" alt="ad image"/>
-                           </div>
-                           <div class="download-ad-content">
-                              <div class="download-ad-title-wrapper">
-                                <div class="ad-label">Ad</div>
-                                <h2 class="download-result-title">${ads[0].title}</h2>
-                              </div>
-                              <p class="download-result-description">${ads[0].description}</p>
-                           </div>
-                           <div class="action-btn-wrapper">
-                                <a href="${ads[0].clickout_url}" target="_blank"><div>${ads[0].call_to_action}</div></a>
-                              </div>
+                ads.forEach(ad => {
+                    const adDiv = document.createElement("div");
+                    adDiv.classList.add("download-ad-wrapper");
+                    adDiv.innerHTML = `
+                        <div class="download-ad">
+                            <div class="download-result">
+                                <div class="download-thumbnail">
+                                <img class="ad-img" src="${ad.thumbnail_url}" alt="ad image"/>
+                            </div>
+                            <div class="download-ad-content">
+                                <div class="download-ad-title-wrapper">
+                                    <div class="ad-label">Ad</div>
+                                    <h2 class="download-result-title">${ad.title}</h2>
+                                </div>
+                                <p class="download-result-description">${ad.description}</p>
+                            </div>
+                            <div class="action-btn-wrapper">
+                                    <a href="${ad.clickout_url}" target="_blank"><div>${ad.call_to_action}</div></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                `;
-                adsContainer.appendChild(adDiv);
+                    `;
+                    adsContainer.appendChild(adDiv);
+                });
             } else {
                 document.getElementById("ad-container").classList.add("display-none");
-                document.getElementById("no-ad-container").classList.add("display-block");
+                document.getElementById("no-ad-container").classList.add("display-flex");
             }
         }
     </script>
     <style>
-        .display-block {
-            display: block;
+
+        .display-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .display-none {
@@ -136,9 +139,7 @@
         }
 
         .search-container {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
+           width: 70%;
         }
 
         .result {
@@ -147,7 +148,7 @@
             flex-direction: column;
             justify-content: left;
             align-items: flex-start;
-            width: 80%;
+            
             background-color: white;
             padding-left: 15px;
             padding-right: 15px;
@@ -191,10 +192,6 @@
 
         .title-link {
             text-decoration: none;
-        }
-
-        #search-results {
-            width: 80%;
         }
 
         .thumbnail-wrapper {
