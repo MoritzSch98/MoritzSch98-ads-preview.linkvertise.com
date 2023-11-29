@@ -10,7 +10,7 @@
     <title>Linkvertise Ad-Network</title>
     <script async src="https://integrate.linkvertise.com/serp-script.js" id="lv-ads"
             data-integration-id="2950"
-            data-ad-number=4
+            data-ad-number=1
             data-keyword="gaming laptop"
             data-jsonp="ads">
     </script>
@@ -130,6 +130,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
         .display-none {
@@ -282,7 +283,7 @@
 
         .download-ad-wrapper {
             min-height: 115px;
-            padding: 16px 0;
+            padding-bottom: 16px;
         }
 
         .download-ad-wrapper a {
@@ -376,6 +377,7 @@
             padding-top: 10px;
             border-radius: 16px;
             border-bottom: 3px solid #FF8114;
+            margin-bottom: 20px;
         }
 
         .carousel-list {
@@ -778,6 +780,26 @@
             .mobile-nav-bar {
                 display: block !important;
             }
+
+            #search-results .result {
+                width: 100%;
+            }
+
+            .content-description {
+                width: 85% !important;
+            }
+
+            .carousel-container {
+                width: 85% !important;
+            }
+
+            #download-ad {
+                width: 85% !important;
+            }
+
+            #script-response {
+                width: 85% !important;
+            }
         }
 
         @media screen and (max-width: 670px) {
@@ -805,23 +827,9 @@
                 font-size: 10px !important;
             }
 
-            .result {
-                width: 64%;
-            }
-
-            .carousel-container {
-                width: 56%;
-                margin-bottom: 20px;
-            }
-
-            #download-ad {
-                width: 56%;
-            }
-
             .content-description {
                 font-size: 10px;
                 line-height: 20px;
-                width: 56%;
             }
 
             .description-text {
