@@ -6,6 +6,7 @@
     <link href="/assets/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
     <link href="/assets/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
     <link href="/assets/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Linkvertise Ad-Network</title>
     <script async src="https://integrate.linkvertise.com/serp-script.js" id="lv-ads"
             data-integration-id="2950"
@@ -15,19 +16,38 @@
     </script>
     <script>
         function ads(ads) {
+            ads = [
+                {
+                    thumbnail_url: "https://cdn.advertiser.linkvertise.com/appearances/3310",
+                    title: "Dr.",
+                    description: "Repellendus non est et beatae non labore facilis est. Excepturi aperiam eum itaque est.",
+                    call_to_action: "SUBSCRIBE NOW",
+                    target_url: "http://baumbach.com/quos-aut-dolor-pariatur-fugit",
+                    clickout_url: "https://click.linkvertise.com//index.html?hYnIrFri5BXIRqCIv1qrZF8rbrDASjtwXyJNcWjNEdE509TkX9G3W8oIfp1lgIdvdSAlZZyO7L0G%2BRkTp4%2F9veA57qQb3xL1iR%2FC1GvdBxdqPBSRkXWw79TndRNUBq7E1V8CfIkOIx%2BEfwLaqkOvX1mGyOPuMB5UhpHMnE%2BwfnsdFBaH4FxbC0x015Qm5KM4G704T6Ek5CWG4EmQ0Tp9g5bV7JWruE0LQuu7N4LXC1U4uNnH31LfP6cT%2B6kpuJ4UdzrGyBeG0qC6U34pce7QDA%3D%3D"
+                },
+                {
+                    thumbnail_url: "https://cdn.advertiser.linkvertise.com/appearances/3310",
+                    title: "Prof.",
+                    description: "Dolorum saepe nostrum consequatur assumenda aut maxime.",
+                    call_to_action: "SUBSCRIBE NOW",
+                    target_url: "http://langosh.com/et-magni-recusandae-hic-molestiae-quis",
+                    clickout_url: "https://click.linkvertise.com//index.html?hYnIrFri5BXIRqCIv1qrZF8rbrDASjtwXyJNcWjNEdE509TkX9G3W8oIfp1lgIdvdSAlZZyO7L0G%2BRkTp4%2F9veA57qQb3xL1iR%2FC1GvdBxdqPBSRkXWw79TndRNUBq7EDYJncoitK%2BR9%2FfCo4iaQ7f%2BI6bz2A3YDmO4XG32%2BdZDpdb97Lawvp79hZU1Ai0BcWO5MMtsks0OXPE9K4M%2FLQ%2BCPldlESUScK%2FfLqnSpJBcEQ5f3MOWwsw5iwn8coqIVFVOYyaGNYIoyVwpSxu1Z1g%3D%3D"
+                },
+                {
+                    thumbnail_url: "https://cdn.advertiser.linkvertise.com/appearances/3310",
+                    title: "Prof.",
+                    description: "Error id ut tenetur in aut.",
+                    call_to_action: "BUY NOW",
+                    target_url: "http://wyman.com/",
+                    clickout_url: "https://click.linkvertise.com//index.html?hYnIrFri5BXIRqCIv1qrZF8rbrDASjtwXyJNcWjNEdE509TkX9G3W8oIfp1lgIdvdSAlZZyO7L0G%2BRkTp4%2F9veA57qQb3xL1iR%2FC1GvdBxdqPBSRkXWw79TndRNUBq7EpUsnp0usZGBao%2BQmjLjcAaF475TN%2FQcEofjHnUX%2BGOpuBdI%2FkcPK7mPjJvFlQ4%2Fra5cMwQfw27s%2Fv5DBOAe1hX2wzJ7Xc15a9MzDmSaSVws%3D"
+                }
+            ];
             if (ads) {
-
-                const responseText = document.createElement("p");
-                responseText.classList.add("response-example");
-                responseText.innerHTML = ads;
-
-                document.getElementById("response-example").appendChild(responseText);
-
-
-
-                document.getElementById("ad-container").classList.add("display-flex");
+                const scriptResponse = ads;
+                document.getElementById("script-response").innerText = JSON.stringify(scriptResponse, null, 2);
+                document.getElementById("ad-container").classList.add("display-block");
                 document.getElementById("no-ad-container").classList.add("display-none");
-
+                console.log(ads);
                 const adContainer = document.getElementById("search-results");
                 adContainer.innerHTML = '';
 
@@ -50,7 +70,7 @@
                 const adCarouselContainer = document.getElementById("carousel-results");
                 adCarouselContainer.innerHTML = '';
 
-                ads.forEach(ad => {
+                ads.concat(ads).forEach(ad => {
                     const adCarouselDiv = document.createElement("li");
                     adCarouselDiv.innerHTML = `
                     <div class="result carousel-result">
@@ -74,44 +94,41 @@
                 const adsContainer = document.getElementById("download-ad");
                 adsContainer.innerHTML = '';
 
-                ads.forEach(ad => {
-                    const adDiv = document.createElement("div");
-                    adDiv.classList.add("download-ad-wrapper");
-                    adDiv.innerHTML = `
-                        <div class="download-ad">
-                            <div class="download-result">
-                                <div class="download-thumbnail">
-                                <img class="ad-img" src="${ad.thumbnail_url}" alt="ad image"/>
-                            </div>
-                            <div class="download-ad-content">
-                                <div class="download-ad-title-wrapper">
-                                    <div class="ad-label">Ad</div>
-                                    <h2 class="download-result-title">${ad.title}</h2>
-                                </div>
-                                <p class="download-result-description">${ad.description}</p>
-                            </div>
-                            <div class="action-btn-wrapper">
-                                    <a href="${ad.clickout_url}" target="_blank"><div>${ad.call_to_action}</div></a>
-                                </div>
-                            </div>
+                const adDiv = document.createElement("div");
+                adDiv.classList.add("download-ad-wrapper");
+                adDiv.innerHTML = `
+                    <div class="download-ad">
+                        <div class="download-result">
+                            <div class="download-thumbnail">
+                             <img class="ad-img" src="${ads[0].thumbnail_url}" alt="ad image"/>
+                           </div>
+                           <div class="download-ad-content">
+                              <div class="download-ad-title-wrapper">
+                                <div class="ad-label">Ad</div>
+                                <h2 class="download-result-title">${ads[0].title}</h2>
+                              </div>
+                              <p class="download-result-description">${ads[0].description}</p>
+                           </div>
+                           <div class="action-btn-wrapper">
+                              <a href="${ads[0].clickout_url}" target="_blank">
+                                <div>${ads[0].call_to_action}</div>
+                              </a>
+                           </div>
                         </div>
-                    `;
-                    adsContainer.appendChild(adDiv);
-                });
+                    </div>
+                `;
+                adsContainer.appendChild(adDiv);
             } else {
                 document.getElementById("ad-container").classList.add("display-none");
-                document.getElementById("no-ad-container").classList.add("display-flex");
+                document.getElementById("no-ad-container").classList.add("display-block");
             }
         }
     </script>
     <style>
-
-        .response-example{
-            color: black;
-        }
-        .display-flex {
+        .display-block {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
@@ -151,7 +168,9 @@
         }
 
         .search-container {
-           width: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .result {
@@ -160,7 +179,7 @@
             flex-direction: column;
             justify-content: left;
             align-items: flex-start;
-            
+            width: 80%;
             background-color: white;
             padding-left: 15px;
             padding-right: 15px;
@@ -206,12 +225,18 @@
             text-decoration: none;
         }
 
+        #search-results {
+            width: 80%;
+        }
+
         .thumbnail-wrapper {
             height: 119px;
             width: 100%;
             overflow: hidden;
             border-radius: 8px;
             background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
         }
 
         .carousel-result .result-title {
@@ -279,8 +304,8 @@
         }
 
         .download-thumbnail {
-            width: 80px;
-            height: 80px;
+            max-height: 100%;
+            max-width: 100%;
 
         }
 
@@ -506,7 +531,7 @@
             font-size: xx-large;
         }
 
-        textarea {
+        #script-response {
             resize: none !important;
             cursor: default;
             font-size: 16px;
@@ -516,7 +541,9 @@
             padding: 16px;
             height: 140px;
             border-bottom: 3px solid #FF8114;
-            border-radius: 16px;
+            background-color: white;
+            text-align: left;
+            overflow-y: scroll;
         }
 
         .lv-img {
@@ -653,11 +680,17 @@
             color: #fff !important;
         }
 
-        @media screen and (max-width: 1366px) {
-            nav {
-                height: 80px;
-            }
+        .desktop-nav-bar {
+            display: block;
+        }
 
+        .mobile-nav-bar {
+            display: none;
+            color: white;
+            font-size: 30px;
+        }
+
+        @media screen and (max-width: 1366px) {
             .container {
                 margin-top: 80px;
             }
@@ -690,6 +723,108 @@
                 top: 40% !important;
             }
         }
+
+        @media screen and (max-width: 870px) {
+            .grouper {
+                gap: 0px;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                padding-left: 50px;
+            }
+
+            .content-description {
+                font-size: 16px !important;
+                line-height: 22px !important;
+            }
+
+            .content-headline {
+                font-size: 24px !important;
+            }
+
+            .ad-example-headline {
+                font-size: 18px !important;
+            }
+
+            .nav-title-mobile {
+                display: none !important;
+            }
+
+            .download-ad-wrapper {
+                padding: 0;
+            }
+
+            .ad-example-headline {
+                margin-bottom: 0px;
+            }
+
+            .action-btn-wrapper {
+                display: none !important;
+            }
+
+            .download-ad-content {
+                width: 100%;
+            }
+
+            #script-response {
+                font-size: 12px !important;
+            }
+
+            .desktop-nav-bar {
+                display: none !important;
+            }
+
+            .mobile-nav-bar {
+                display: block !important;
+            }
+        }
+
+        @media screen and (max-width: 620px) {
+            .content-headline {
+                font-size: 18px !important;
+            }
+        }
+
+        @media screen and (max-width: 460px) {
+            .content-headline {
+                font-size: 17px !important;
+            }
+
+            .ad-example-headline {
+                font-size: 16px !important;
+            }
+
+            .footer {
+                font-size: 10px !important;
+            }
+
+            .result {
+                width: 64%;
+            }
+
+            .carousel-container {
+                width: 56%;
+                margin-bottom: 20px;
+            }
+
+            #download-ad {
+                width: 56%;
+            }
+
+            .content-description {
+                font-size: 10px;
+                line-height: 20px;
+                width: 56%;
+            }
+
+            .description-text {
+                width: 80% !important;
+            }
+
+            #script-response {
+                font-size: 10px !important;
+            }
+        }
     </style>
 </head>
 <nav>
@@ -703,15 +838,16 @@
         Linkvertise Ad-Network
     </h3>
     <a class="nav-btn-link" href="https://ads.linkvertise.com/special" target="_blank">
-        <button class="login">
+        <button class="login desktop-nav-bar">
             <span>Early Access</span>
         </button>
+        <span class="material-symbols-outlined mobile-nav-bar">login</span>
     </a>
 </nav>
 <body>
 <div class="container">
     <h1 class="content-headline">Get a taste of Linkvertise search ads!</h1>
-    <div class="content-description">
+    <div class="content-description description-text">
         <p>Our fully customizable search ads will provide the best search experience for every party involved, to
             include both the site visitors & the bidding advertisers.</p>
         <p>In fact, there are countless ad appearance "look and feel" options available to you, however to give you a
@@ -721,15 +857,13 @@
         <p>With the won freedom in creativity, supply partners are no longer limited to singular placement options. This
             effectively enhances both the aesthetics of the search page and the conversions of the ad!</p>
     </div>
-    <textarea id="response-example" readonly>
-        
-    </textarea>
-    <p class="content-description">Example code response for keyword = "Gaming laptop"</p>
+    <p class="content-description description-text">Example code response for keyword = "Gaming laptop"</p>
     <div id="search-keyword"></div>
     <div class="search-box">
         <div class="search-input">Gaming laptop</div>
         <div class="search-button">Search</div>
     </div>
+    <pre id="script-response"></pre>
     <h2 class="ad-example-headline">How Linkvertise Search Ads could look like!</h2>
     <br>
     <div id="ad-container">
@@ -743,6 +877,7 @@
         </div>
         <h3 class="content-description">Native search results:</h3>
         <div id="download-ad"></div>
+        // mobile clickable machen
     </div>
     <div id="no-ad-container">
         <h3 class="content-description">No ads available.</h3>
