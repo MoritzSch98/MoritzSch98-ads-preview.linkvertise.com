@@ -44,7 +44,7 @@
             ];
             if (ads) {
                 const scriptResponse = ads;
-                document.getElementById("script-response").innerText = JSON.stringify(scriptResponse, null, 2);
+                document.getElementById("script-response").innerText = JSON.stringify(scriptResponse[0], null, 2);
                 document.getElementById("ad-container").classList.add("display-block");
                 document.getElementById("no-ad-container").classList.add("display-none");
                 console.log(ads);
@@ -544,12 +544,14 @@
             line-height: 100%;
             width: 70%;
             padding: 16px;
-            height: 140px;
+            height: 126px;
             border-bottom: 3px solid #FF8114;
             background-color: white;
             text-align: left;
-            overflow-y: scroll;
             margin-top: 0px;
+            border-radius: 16px;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .lv-img {
@@ -782,6 +784,7 @@
 
             #script-response {
                 width: 85% !important;
+                height: 94px !important;
             }
 
             #download-ad {
@@ -841,6 +844,7 @@
 
             #script-response {
                 font-size: 10px !important;
+                height: 76px !important;
             }
         }
     </style>
