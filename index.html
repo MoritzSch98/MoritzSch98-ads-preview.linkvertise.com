@@ -16,32 +16,15 @@
     </script>
     <script>
         function ads(ads) {
-            ads = [
+            exampleResult =
                 {
-                    thumbnail_url: "https://cdn.advertiser.linkvertise.com/appearances/3310",
-                    title: "Dr.",
-                    description: "Repellendus non est et beatae non labore facilis est. Excepturi aperiam eum itaque est.",
-                    call_to_action: "SUBSCRIBE NOW",
-                    target_url: "http://baumbach.com/quos-aut-dolor-pariatur-fugit",
-                    clickout_url: "https://click.linkvertise.com//index.html?hYnIrFri5BXIRqCIv1qrZF8rbrDASjtwXyJNcWjNEdE509TkX9G3W8oIfp1lgIdvdSAlZZyO7L0G%2BRkTp4%2F9veA57qQb3xL1iR%2FC1GvdBxdqPBSRkXWw79TndRNUBq7E1V8CfIkOIx%2BEfwLaqkOvX1mGyOPuMB5UhpHMnE%2BwfnsdFBaH4FxbC0x015Qm5KM4G704T6Ek5CWG4EmQ0Tp9g5bV7JWruE0LQuu7N4LXC1U4uNnH31LfP6cT%2B6kpuJ4UdzrGyBeG0qC6U34pce7QDA%3D%3D"
-                },
-                {
-                    thumbnail_url: "https://cdn.advertiser.linkvertise.com/appearances/3310",
-                    title: "Prof.",
-                    description: "Dolorum saepe nostrum consequatur assumenda aut maxime.",
-                    call_to_action: "SUBSCRIBE NOW",
-                    target_url: "http://langosh.com/et-magni-recusandae-hic-molestiae-quis",
-                    clickout_url: "https://click.linkvertise.com//index.html?hYnIrFri5BXIRqCIv1qrZF8rbrDASjtwXyJNcWjNEdE509TkX9G3W8oIfp1lgIdvdSAlZZyO7L0G%2BRkTp4%2F9veA57qQb3xL1iR%2FC1GvdBxdqPBSRkXWw79TndRNUBq7EDYJncoitK%2BR9%2FfCo4iaQ7f%2BI6bz2A3YDmO4XG32%2BdZDpdb97Lawvp79hZU1Ai0BcWO5MMtsks0OXPE9K4M%2FLQ%2BCPldlESUScK%2FfLqnSpJBcEQ5f3MOWwsw5iwn8coqIVFVOYyaGNYIoyVwpSxu1Z1g%3D%3D"
-                },
-                {
-                    thumbnail_url: "https://cdn.advertiser.linkvertise.com/appearances/3310",
-                    title: "Prof.",
-                    description: "Error id ut tenetur in aut.",
-                    call_to_action: "BUY NOW",
-                    target_url: "http://wyman.com/",
-                    clickout_url: "https://click.linkvertise.com//index.html?hYnIrFri5BXIRqCIv1qrZF8rbrDASjtwXyJNcWjNEdE509TkX9G3W8oIfp1lgIdvdSAlZZyO7L0G%2BRkTp4%2F9veA57qQb3xL1iR%2FC1GvdBxdqPBSRkXWw79TndRNUBq7EpUsnp0usZGBao%2BQmjLjcAaF475TN%2FQcEofjHnUX%2BGOpuBdI%2FkcPK7mPjJvFlQ4%2Fra5cMwQfw27s%2Fv5DBOAe1hX2wzJ7Xc15a9MzDmSaSVws%3D"
-                }
-            ];
+                    thumbnail_url: "/assets/placeholder.jpeg",
+                    title: "Lorem ipsum dolor sit amet, consetetur",
+                    description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.",
+                    call_to_action: "Lorem ipsum",
+                    target_url: "https://www.google.com",
+                    clickout_url: "https://www.google.com"
+                };
             if (ads) {
                 const scriptResponse = ads;
                 document.getElementById("script-response").innerText = JSON.stringify(scriptResponse[0], null, 2);
@@ -51,12 +34,27 @@
                 const adContainer = document.getElementById("search-results");
                 adContainer.innerHTML = '';
 
-                ads.forEach(ad => {
+                // Add ad from feed for classic result
+                const adResultDiv = document.createElement("div");
+                adResultDiv.classList.add("result");
+                adResultDiv.innerHTML = `
+                            <h2 class="result-title">
+                                <div class="ad-label">Ad</div>
+                                <a class="title-link" href="${ads[0].clickout_url}" target="_blank">
+                                    ${ads[0].title} - ${ads[0].call_to_action}
+                                </a>
+                            </h2>
+                            <a class="result-url" href="${ads[0].clickout_url}" target="_blank">${ads[0].target_url}</a>
+                            <p class="result-description">${ads[0].description}</p>
+                    `;
+                adContainer.appendChild(adResultDiv);
+
+                // Add example results for classic results
+                [exampleResult, exampleResult].forEach(ad => {
                     const adResultDiv = document.createElement("div");
                     adResultDiv.classList.add("result");
                     adResultDiv.innerHTML = `
                             <h2 class="result-title">
-                                <div class="ad-label">Ad</div>
                                 <a class="title-link" href="${ad.clickout_url}" target="_blank">
                                     ${ad.title} - ${ad.call_to_action}
                                 </a>
@@ -70,7 +68,26 @@
                 const adCarouselContainer = document.getElementById("carousel-results");
                 adCarouselContainer.innerHTML = '';
 
-                ads.concat(ads).forEach(ad => {
+                const adCarouselDiv = document.createElement("li");
+                adCarouselDiv.innerHTML = `
+                    <div class="result carousel-result">
+                        <a class="carousel-ad-link" href="${ads[0].clickout_url}" target="_blank">
+                            <div class="col-12 thumbnail-wrapper">
+                            <img class="ad-img" src="${ads[0].thumbnail_url}" alt="${ads[0].title}"/>
+                            </div>
+                            <h2 class="result-title">
+                               <div class="title-link">
+                                  <div class="ad-label">Ad</div>
+                                  <p>${ads[0].title} - ${ads[0].call_to_action}</p>
+                               </div>
+                            </h2>
+                            <p class="result-description">${ads[0].description}</p>
+                        </a>
+                    </div>
+                    `;
+                adCarouselContainer.appendChild(adCarouselDiv);
+
+                [exampleResult, exampleResult, exampleResult, exampleResult, exampleResult].forEach(ad => {
                     const adCarouselDiv = document.createElement("li");
                     adCarouselDiv.innerHTML = `
                     <div class="result carousel-result">
@@ -79,8 +96,8 @@
                             <img class="ad-img" src="${ad.thumbnail_url}" alt="${ad.title}"/>
                             </div>
                             <h2 class="result-title">
-                               <div class="title-link">
-                                  <div class="ad-label">Ad</div>
+                               <div class="title-link example-ad">
+                                  <div class="ad-label"></div>
                                   <p>${ad.title}</p>
                                </div>
                             </h2>
@@ -125,9 +142,15 @@
         }
     </script>
     <style>
+        .example-ad .ad-label {
+            border: 0 !important;
+            height: 18px !important;
+        }
+
         #ad-container :first-child {
             margin-top: 0px;
         }
+
         .display-block {
             display: flex;
             flex-direction: column;
@@ -265,7 +288,7 @@
 
         .carousel-ad-link .result-description {
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
             margin: 0;
@@ -300,10 +323,6 @@
 
         .download-result {
             display: flex;
-            flex: 1;
-            margin-bottom: 0;
-            column-gap: 16px;
-            padding-right: 16px;
             align-items: center;
             width: 100%;
         }
