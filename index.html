@@ -125,6 +125,9 @@
         }
     </script>
     <style>
+        #ad-container :first-child {
+            margin-top: 0px;
+        }
         .display-block {
             display: flex;
             flex-direction: column;
@@ -182,8 +185,7 @@
             align-items: flex-start;
             width: 80%;
             background-color: white;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 10px 15px 0 15px;
         }
 
         .result-title {
@@ -339,7 +341,6 @@
 
 
         .action-btn-wrapper {
-            flex-basis: 220px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -547,6 +548,7 @@
             background-color: white;
             text-align: left;
             overflow-y: scroll;
+            margin-top: 0px;
         }
 
         .lv-img {
@@ -753,22 +755,6 @@
                 display: none !important;
             }
 
-            .download-ad-wrapper {
-                padding: 0;
-            }
-
-            .ad-example-headline {
-                margin-bottom: 0px;
-            }
-
-            .action-btn-wrapper {
-                display: none !important;
-            }
-
-            .download-ad-content {
-                width: 100%;
-            }
-
             #script-response {
                 font-size: 12px !important;
             }
@@ -793,11 +779,11 @@
                 width: 85% !important;
             }
 
-            #download-ad {
+            #script-response {
                 width: 85% !important;
             }
 
-            #script-response {
+            #download-ad {
                 width: 85% !important;
             }
         }
@@ -805,6 +791,10 @@
         @media screen and (max-width: 670px) {
             .carousel-list li {
                 width: calc(100%/ 2) !important;
+            }
+
+            .action-btn-wrapper a div {
+                padding: 8px 0px !important;
             }
         }
 
@@ -815,6 +805,18 @@
         }
 
         @media screen and (max-width: 460px) {
+            .action-btn-wrapper {
+                display: none !important;
+            }
+
+            .download-ad-wrapper {
+                padding: 0;
+            }
+
+            .download-ad-content {
+                width: 100%;
+            }
+
             .content-headline {
                 font-size: 17px !important;
             }
@@ -872,15 +874,15 @@
         <p>With the won freedom in creativity, supply partners are no longer limited to singular placement options. This
             effectively enhances both the aesthetics of the search page and the conversions of the ad!</p>
     </div>
-    <p class="content-description description-text">Example code response for keyword = "Gaming laptop"</p>
+    <h2 class="ad-example-headline">1. Example Search for ...</h2>
     <div id="search-keyword"></div>
     <div class="search-box">
         <div class="search-input">Gaming laptop</div>
         <div class="search-button">Search</div>
     </div>
+    <h2 class="ad-example-headline">2. Example Response</h2>
     <pre id="script-response"></pre>
-    <h2 class="ad-example-headline">How Linkvertise Search Ads could look like!</h2>
-    <br>
+    <h2 class="ad-example-headline">3. Example Response Visualization</h2>
     <div id="ad-container">
         <h3 class="content-description">Classic search results:</h3>
         <div class="search-container" id="search-results"></div>
