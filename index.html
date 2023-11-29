@@ -237,6 +237,7 @@
             background-color: #f8f9fa;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         .carousel-result .result-title {
@@ -779,6 +780,12 @@
             }
         }
 
+        @media screen and (max-width: 670px) {
+            .carousel-list li {
+                width: calc(100%/ 2) !important;
+            }
+        }
+
         @media screen and (max-width: 620px) {
             .content-headline {
                 font-size: 18px !important;
@@ -925,10 +932,10 @@
         nextBtn.style.display = 'block';
 
         nextBtn.addEventListener('click', function () {
-            if (currentIndex < Math.ceil(carouselList.children.length - 3)) {
+            if (currentIndex < Math.ceil(carouselList.children.length - (window.innerWidth < 670 ? 2 : 3))) {
                 prevBtn.style.display = 'block';
                 currentIndex++;
-                if (currentIndex === Math.ceil(carouselList.children.length - 3)) {
+                if (currentIndex === Math.ceil(carouselList.children.length - (window.innerWidth < 670 ? 2 : 3))) {
                     nextBtn.style.display = 'none';
                 }
             } else {
@@ -953,7 +960,13 @@
         });
 
         function updateCarousel() {
-            const translateValue = -currentIndex * (100 / 3) + '%';
+            let translateValue = 0;
+            if (window.innerWidth < 670) {
+                translateValue = -currentIndex * (100 / 2) + '%';
+            } else {
+                translateValue = -currentIndex * (100 / 3) + '%';
+            }
+
             carouselList.style.transform = 'translateX(' + translateValue + ')';
         }
     });
