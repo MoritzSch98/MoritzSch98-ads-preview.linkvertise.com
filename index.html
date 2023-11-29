@@ -15,7 +15,9 @@
             data-jsonp="ads">
     </script>
     <script>
+        let targetUrl = "";
         function ads(ads) {
+            targetUrl = ads[0].clickout_url;
             exampleResult =
                 {
                     thumbnail_url: "/assets/placeholder.jpeg",
@@ -30,7 +32,7 @@
                 document.getElementById("script-response").innerText = JSON.stringify(scriptResponse[0], null, 2);
                 document.getElementById("ad-container").classList.add("display-block");
                 document.getElementById("no-ad-container").classList.add("display-none");
-                console.log(ads);
+
                 const adContainer = document.getElementById("search-results");
                 adContainer.innerHTML = '';
 
@@ -68,6 +70,7 @@
                 const adCarouselContainer = document.getElementById("carousel-results");
                 adCarouselContainer.innerHTML = '';
 
+                // Add ad from feed for carousel result
                 const adCarouselDiv = document.createElement("li");
                 adCarouselDiv.innerHTML = `
                     <div class="result carousel-result">
@@ -87,6 +90,7 @@
                     `;
                 adCarouselContainer.appendChild(adCarouselDiv);
 
+                // Add example results for carousel result
                 [exampleResult, exampleResult, exampleResult, exampleResult, exampleResult].forEach(ad => {
                     const adCarouselDiv = document.createElement("li");
                     adCarouselDiv.innerHTML = `
@@ -111,6 +115,7 @@
                 const adsContainer = document.getElementById("download-ad");
                 adsContainer.innerHTML = '';
 
+                // Add ad from feed for native result
                 const adDiv = document.createElement("div");
                 adDiv.classList.add("download-ad-wrapper");
                 adDiv.innerHTML = `
@@ -678,7 +683,7 @@
             font-size: 12px;
             line-height: 24px;
             font-weight: 100;
-            font-family: Roboto,Helvetica Neue,sans-serif;
+            font-family: Open Sans,Arial,sans-serif;
             margin-top: 40px;
         }
 
@@ -821,6 +826,10 @@
             .action-btn-wrapper a div {
                 padding: 8px 0px !important;
             }
+
+            #download-ad {
+                cursor: pointer;
+            }
         }
 
         @media screen and (max-width: 620px) {
@@ -928,7 +937,6 @@
         </div>
         <h3 class="content-description">Native search results:</h3>
         <div id="download-ad"></div>
-        // mobile clickable machen
     </div>
     <div id="no-ad-container">
         <h3 class="content-description">No ads available.</h3>
@@ -970,6 +978,7 @@
         const carouselList = document.querySelector('.carousel-list');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
+        const downloadAd = document.querySelector('#download-ad');
 
         let currentIndex = 0;
         prevBtn.style.display = 'none';
@@ -1003,6 +1012,12 @@
             updateCarousel();
         });
 
+        downloadAd.addEventListener('click', function () {
+            if (window.innerWidth < 670) {
+                window.open(targetUrl, "_blank");
+            }
+        });
+
         function updateCarousel() {
             let translateValue = 0;
             if (window.innerWidth < 670) {
@@ -1013,6 +1028,13 @@
 
             carouselList.style.transform = 'translateX(' + translateValue + ')';
         }
+    });
+
+    window.addEventListener("resize", function () {
+        const carouselList = document.querySelector('.carousel-list');
+        const prevBtn = document.querySelector('.prev-btn');
+        carouselList.style.transform = 'translateX(0)';
+        prevBtn.click();
     });
 </script>
 </body>
