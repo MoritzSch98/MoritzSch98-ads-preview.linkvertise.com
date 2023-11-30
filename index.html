@@ -733,14 +733,15 @@
 
         .footer__bottom {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
             flex-direction: row;
-            padding: 0 25px;
+            align-items: center;
             height: 60px;
+            width: 80%;
+            margin: auto;
         }
 
         .footer__bottom a {
-            padding-left: 10%;
             cursor: pointer;
             text-decoration: none;
             color: #fff !important;
@@ -758,6 +759,14 @@
 
         #search-results .result {
             width: calc(100% - 30px);
+        }
+
+        .desktop-footer {
+            display: block;
+        }
+
+        .mobile-footer {
+            display: none;
         }
 
         @media screen and (max-width: 1366px) {
@@ -864,6 +873,24 @@
             .content-headline {
                 font-size: 18px !important;
             }
+
+            .desktop-footer {
+                display: none;
+            }
+
+            .mobile-footer {
+                display: block;
+            }
+
+            .footer__bottom {
+                justify-content: center;
+                flex-direction: column;
+                height: 73px;
+            }
+
+            .footer-title {
+                margin: 0 !important;
+            }
         }
 
         @media screen and (max-width: 460px) {
@@ -889,10 +916,6 @@
 
             .ad-example-headline {
                 font-size: 16px !important;
-            }
-
-            .footer {
-                font-size: 10px !important;
             }
 
             .content-description {
@@ -1006,10 +1029,17 @@
     <div class="footer">
         <div class="footer__border"></div>
         <div class="footer__bottom">
-            <p>2023 Linkvertise. All rights reserved.</p>
-            <a href="https://linkvertise.com/imprint" target="_blank">Contact</a>
-            <a href="https://linkvertise.com/tos" target="_blank">GTC</a>
-            <a href="https://linkvertise.com/privacy" target="_blank">Privacy</a>
+            <p class="footer-title">2023 Linkvertise. All rights reserved.</p>
+            <div class="mobile-footer">
+                <a href="https://linkvertise.com/imprint" target="_blank">Imprint</a>
+                |
+                <a href="https://linkvertise.com/tos" target="_blank">GTC</a>
+                |
+                <a href="https://linkvertise.com/privacy" target="_blank">Privacy Policy</a>
+            </div>
+            <a class="desktop-footer" href="https://linkvertise.com/imprint" target="_blank">Imprint</a>
+            <a class="desktop-footer" href="https://linkvertise.com/tos" target="_blank">GTC</a>
+            <a class="desktop-footer" href="https://linkvertise.com/privacy" target="_blank">Privacy Policy</a>
         </div>
     </div>
 </div>
