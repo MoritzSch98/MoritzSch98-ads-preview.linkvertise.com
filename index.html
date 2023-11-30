@@ -140,6 +140,33 @@
                     </div>
                 `;
                 adsContainer.appendChild(adDiv);
+
+                // Add example results for native result
+                [exampleResult, exampleResult].forEach(ad => {
+                    const adDiv = document.createElement("div");
+                    adDiv.classList.add("download-ad-wrapper");
+                    adDiv.innerHTML = `
+                        <div class="download-ad">
+                            <div class="download-result">
+                                <div class="download-thumbnail">
+                                 <img class="ad-img" src="${ad.thumbnail_url}" alt="ad image"/>
+                               </div>
+                               <div class="download-ad-content">
+                                  <div class="download-ad-title-wrapper">
+                                    <h2 class="download-result-title">${ad.title}</h2>
+                                  </div>
+                                  <p class="download-result-description">${ad.description}</p>
+                               </div>
+                               <div class="action-btn-wrapper">
+                                  <a href="${ad.clickout_url}" target="_blank">
+                                    <div>${ad.call_to_action}</div>
+                                  </a>
+                               </div>
+                            </div>
+                        </div>
+                    `;
+                    adsContainer.appendChild(adDiv);
+                });
             } else {
                 document.getElementById("ad-container").classList.add("display-none");
                 document.getElementById("no-ad-container").classList.add("display-block");
@@ -885,6 +912,10 @@
             .download-thumbnail {
                 min-height: 80px;
                 min-width: 80px;
+            }
+
+            .download-ad-wrapper {
+                margin-bottom: 20px !important;
             }
         }
     </style>
